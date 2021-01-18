@@ -1,0 +1,11 @@
+---
+# tasks file for upgrade-system
+
+
+- name: Update package manager
+  apt:
+    update_cache: yes
+
+- name: Upgrade libraries
+  apt:
+    upgrade: dist

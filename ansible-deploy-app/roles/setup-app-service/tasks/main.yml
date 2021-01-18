@@ -1,0 +1,18 @@
+---
+# tasks file for setup-app-service
+
+- name: upload service config on server
+  ansible.builtin.copy:
+    src: '{{ role_path }}/files/demo-site.service'
+    dest: /etc/systemd/system/demo_site.service
+
+- name: enable service
+  ansible.builtin.systemd:
+    name: demo_site.service
+    enabled: yes
+
+- name: start service
+  ansible.builtin.systemd:
+    name: demo_site.service
+    daemon_reload: yes
+    state: restarted

@@ -1,0 +1,7 @@
+---
+# tasks file for add-applicative-user
+
+- name: Add user noether to run node application
+  user:
+    name: noether
+    create_home: no

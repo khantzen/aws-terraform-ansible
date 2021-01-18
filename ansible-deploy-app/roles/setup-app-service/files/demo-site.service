@@ -1,0 +1,14 @@
+[Unit]
+Description=This is my demo website for aws + ansible deploy
+After=network.target
+
+[Service]
+Environment=NODE_PORT=3000
+Type=simple
+User=noether
+WorkingDirectory=/srv/site
+ExecStart=/usr/bin/node /srv/site/app.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,32 @@
+---
+# tasks file for deploy-app-on-server
+
+- name: Create server app directory
+  ansible.builtin.file:
+    path: /srv/site
+    owner: noether
+    group: noether
+    state: directory
+
+- name: Install unzip
+  apt:
+    name: unzip
+    state: present
+
+- name: Upload sources on server
+  ansible.builtin.unarchive:
+    src: '{{ playbook_dir }}/artifact/site.zip'
+    dest: /srv/site
+    group: noether
+    owner: noether
+
+- name: Install npm dependencies
+  community.general.npm:
+    path: /srv/site
+
+- name: uninstall unzip and npm
+  apt:
+    name: 
+      - unzip
+      - npm
+    state: absent

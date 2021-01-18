@@ -1,0 +1,10 @@
+- hosts: app_server
+  become: yes
+  remote_user: ubuntu
+
+  roles:
+    - install-node-environment
+    - add-applicative-user
+    - upload-app-on-server
+    - setup-app-service
+    - start-http-server
